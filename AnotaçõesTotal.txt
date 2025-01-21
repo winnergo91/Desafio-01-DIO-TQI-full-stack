@@ -1,0 +1,142 @@
+Comandos Shell e Bash
+Windows
+cd
+dir
+mkdir
+del / rmdir
+
+Unix
+cd
+ls
+mkdir 
+#criar .txt
+	echo hello world > hello world.txt #inseriu o texto "hello world" dentro do .txt
+rm -rf = remove -recoursive force #exclui pastas e subpastas
+
+SHA1 - Secure Hash Algorithm, desenvolvido pela NSA que criptografa para 40 caracteres qual documento com o comando:
+	echo "Im Here!" | openssl sha1
+	SHA1(stdin)= 23e159d5b3859d5efd941afaeca69ba09d9be4be
+	echo "Im Here!" | openssl sha256
+	SHA2-256(stdin)= dce4f41606d44f593fdf648277f184eda3a8b3575ac3cddd3dee125a652b8405
+	echo "Im Here!" | openssl sha3-256
+	SHA3-256(stdin)= 81bebeca97be15280f4a657da6b8e334dba2ca5a4f9004a42a02e2e02f500861
+
+Blob, Tree, Commit
+Bolha, Árvore, Confirmação
+
+Usando o GIT SHA1
+	echo "conteudo" | git hash-object --stdin
+		     fc31e91b26cf85a55e072476de7f263c89260eb1
+	echo -e "blob 9\0conteudo" | openssl sha1
+	SHA1(stdin)= fc31e91b26cf85a55e072476de7f263c89260eb1
+	
+	echo "Im HERE!" | git hash-object --stdin
+		     3c3d1424fa2964e99b33d2f8412cbf169a641ead
+	echo -e "blob 9\0Im HERE!" | openssl sha1
+	SHA1(stdin)= 3c3d1424fa2964e99b33d2f8412cbf169a641ead
+	
+Chave SSH, chave de acesso remoto
+	ssh-keygen -t ed25519 -C barauna91@gmail.com
+	cd /root/.ssh
+	ls -a #revela pastas e arquivos ocultos
+	~/.ssh# cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMyD5rwWu/t2qdPHZuDglawyoufyd/3bGqFlR0yqYkoF barauna91@gmail.com
+
+	eval $(ssh-agent -s)
+	Agent pid 18744 #Startou o agente
+	
+	ssh-add id_ed25519 #utilizara o hash SENHA:Linkedin1991**
+
+TOKEN de acesso pessoal #auxiliar ao SSH
+
+	git init
+	git config --global user.email "barauna91@gmail.com"
+	nano strogonoff.md # criar arquivo markdown html
+	git add *
+	
+	git clone git@github.com:winnergo91/Desafio-01-DIO-TQI-full-stack.git
+	#Vai pedir a senha: Link...
+	git status # demonstrar como esta a pasta no github
+	git add . ou git add -A #Para adicionar local, pronto para enviar tudo que foi alterado
+	git commit -m "commit inicial do usuario" #Isso inclui as alterações feita no github "na nuvem" sair do local para fora
+	git push origin main # agora envia tudo pra nunvem github
+	
+	
+#PROCESSO COMPLETO
+	root@winnergo-Predator:/workspace# git clone git@github.com:winnergo91/Desafio-01-DIO-TQI-full-stack.git
+Cloning into 'Desafio-01-DIO-TQI-full-stack'...
+The authenticity of host 'github.com (20.201.28.151)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Enter passphrase for key '/root/.ssh/id_ed25519': 
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (6/6), done.
+Resolving deltas: 100% (1/1), done.
+	root@winnergo-Predator:/workspace# ls
+Desafio-01-DIO-TQI-full-stack  livro-receitas
+	root@winnergo-Predator:/workspace# ls Desafio-01-DIO-TQI-full-stack/
+README.md
+	root@winnergo-Predator:/workspace# cd Desafio-01-DIO-TQI-full-stack/
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# ls
+README.md
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git status
+No ramo main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# mkdir Introdução
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# cd Introdução/
+	oot@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack/Introdução# nano Anotações.txt
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack/Introdução# cat Anotações.txt 
+Esse curso está sendo muiot bom, teoria e prática para assimilamento.
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack/Introdução# nano Anotações.txt 
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack/Introdução# cd ..
+root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git status
+	No ramo main
+Your branch is up to date with 'origin/main'.
+
+Arquivos não monitorados:
+  (utilize "git add <arquivo>..." para incluir o que será submetido)
+	"Introdu\303\247\303\243o/"
+
+nada adicionado ao envio mas arquivos não registrados estão presentes (use "git add" to registrar)
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git add .
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git status
+No ramo main
+Your branch is up to date with 'origin/main'.
+
+Mudanças a serem submetidas:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   "Introdu\303\247\303\243o/Anota\303\247\303\265es.txt"
+
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git commit -m "Inclusão de um .txt denomindao Anotações"
+[main 416b9fd] Inclusão de um .txt denomindao Anotações
+ 1 file changed, 1 insertion(+)
+ create mode 100644 "Introdu\303\247\303\243o/Anota\303\247\303\265es.txt"
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git status
+No ramo main
+Seu ramo está à frente de 'origin/main' por 1 submissão.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git push origin main
+Enter passphrase for key '/root/.ssh/id_ed25519': 
+ 
+^C
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# git push origin main
+Enter passphrase for key '/root/.ssh/id_ed25519': 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 433 bytes | 433.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To github.com:winnergo91/Desafio-01-DIO-TQI-full-stack.git
+   0212426..416b9fd  main -> main
+	root@winnergo-Predator:/workspace/Desafio-01-DIO-TQI-full-stack# 
+
